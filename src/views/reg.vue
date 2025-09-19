@@ -161,7 +161,7 @@
       
       <div class="modal-right">
           
-        <img src="/public/login.jpg" alt="Login background">
+        <img src="../assets/login.jpg" alt="Login background">
       </div>
         <button type="button" class="icon-button close-button" @click="closeModal">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
@@ -508,7 +508,7 @@ body {
 
 .container {
   height: 200vh;
-   background-image:  url("./public/Polygon Luminary.svg");
+   background-image:  url("../assets/Polygon Luminary.svg");
     background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

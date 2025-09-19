@@ -435,7 +435,7 @@ a {
 
 .container {
   height: 200vh;
-   background-image:  url("./public/Polygon Luminary.svg");
+   background-image:  url("../assets/Polygon Luminary.svg");
     background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
