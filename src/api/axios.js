@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { globalAuthStore } from '@/stores/useAuth.js'; // Import your auth store
 
-const BASE_URL = 'http://localhost:3500';
+const BASE_URL = 'https://admin-dashboard-back-end-1.onrender.com';
 
 export default axios.create({
     baseURL: BASE_URL
