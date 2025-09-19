@@ -454,7 +454,7 @@ a {
   justify-content: center;
   transition: 0.4s;
 
-  &-container {
+  :is(-container) {
     display: flex;
     max-width: 720px;
     width: 100%;
@@ -468,18 +468,18 @@ a {
     transform: translateY(100px) scale(0.4);
   }
 
-  &-title {
+  :is(-title) {
     font-size: 26px;
     margin: 0;
     font-weight: 400;
     color: #55311c;
   }
 
-  &-desc {
+  :is(-desc) {
     margin: 6px 0 30px 0;
   }
 
-  &-left {
+ :is( -left) {
     padding: 60px 30px 20px;
     background: #fff;
     flex: 1.5;
@@ -488,7 +488,7 @@ a {
     opacity: 0;
   }
 
-  &-button {
+ :is( -button) {
     color: darken(#dbc5d8, 5%);
     font-family: "Nunito", sans-serif;
     font-size: 18px;
@@ -501,13 +501,13 @@ a {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
     transition: 0.3s;
     
-    &:hover {
+   :is( &:hover) {
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(#fff, 0.8);
     }
   }
 
-  &-right {
+ :is( -right ){
     flex: 2;
     font-size: 0;
     transition: 0.3s;
@@ -522,7 +522,7 @@ a {
     }
   }
 
-  &.is-open {
+ :is( &.is-open) {
     height: 100%;
     
 
@@ -549,7 +549,7 @@ a {
     }
   }
 
-  &-buttons {
+  :is(-buttons) {
     display: flex;
     justify-content: space-between;
     align-items: center;
