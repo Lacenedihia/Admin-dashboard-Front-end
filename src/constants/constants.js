@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:3500";
+export const BASE_URL = "https://admin-dashboard-back-end-1.onrender.com";
