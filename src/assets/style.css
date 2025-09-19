@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body:not(:has(.logged)) {
+  /* background: linear-gradient(287.15deg, #efafbc 0%, #c3e3fa 100%); */
+  background-color: #00bbd403;
+  /* background: #00bcd4;
+  */
+
+  /*background-image: url('@/assets/KYC_background.svg');*/
+  background-size: cover;
+}
+
+body:has(.logged) {
+  margin: 0;
+  background-color: #f4f7fe;
+}
+
+/* f4f7fe */
+body {
+  /* font-family: 'Poppins', sans-serif !important;*/
+  font-family: "Roboto", sans-serif !important;
+  color: #0f172a;
+  /*background: linear-gradient(287.15deg, #EFAFBC 0%, #C3E3FA 100%);*/
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.search_icon {
+  align-self: flex-end;
+  width: 5%;
+  justify-self: end;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+}
+
+.nav-btn {
+  border: 2px #e0e3ea solid;
+  border-radius: 50%;
+  background: white;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+
+.nav-icon {
+  color: #7d8fb3;
+  font-size: 20px;
+}
+
+.gray-hover:hover {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.btn-scale:hover {
+  transform: scale(1.1);
+  transition: all 0.1s ease-in;
+}
+
+.link-hover::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #2196f3;
+  position: absolute;
+  /* bottom: 0px; */
+  top: 155%;
+  left: 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+.active:hover {}
+
+.grad {
+  background: #3789ff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.grad>.arch {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.blue_span {
+  color: #2196f3;
+}
+
+.carousel__viewport {
+  height: 100%;
+}
+
+.carousel__viewport>.carousel__track {
+  height: 100%;
+}
+
+.carousel {
+  height: 100%;
+}
+
+.paragraph ul,
+.paragraph ol {
+  padding-left: 2rem;
+  list-style: inherit;
+}
+
+.paragraph h1 {
+  font-size: 56px;
+}
+
+.paragraph h2 {
+  font-size: 42px;
+}
+
+.paragraph h3 {
+  font-size: 34px;
+}
+
+.paragraph h4 {
+  font-size: 26px;
+}
+
+.paragraph h5 {
+  font-size: 18px;
+}
+
+.paragraph h6 {
+  font-size: 12px;
+}
+
+.paragraph p {
+  font-size: 14px;
+}
+
+.paragraph a {
+  color: #2196f3;
+  text-decoration: underline;
+}
+
+/* Style for the entire scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #2195f341;
+}
+
+/* Style for the scrollbar track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  width: 100px;
+}
+
+/* Style for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #2196f3;
+  border-radius: 10px;
+  margin: 0 2%;
+}
+
+/* Style for the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.checked {
+  background-color: #2196f3;
+  /* Background color when checked */
+  color: #fff;
+  /* Text color when checked */
+  border-color: #2196f3;
+
+  /* Border color when checked */
+  &:hover {
+    background-color: #2196f3;
+    /* Background color when checked */
+  }
+}
+
+.custom-radio {
+  /* Hide the default radio button */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Create a custom circular radio button */
+  width: 25px;
+  height: 25px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  /* Position the radio button relative to its container */
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.custom-radio:checked {
+  /* Change border color when checked */
+  border-color: #fff;
+
+  /* Add inner circle when checked */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}
+
+.hero-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60px;
+  height: 100%;
+  background-color: #ffffff34;
+  animation: moveRightWithShape 2s infinite;
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+@keyframes moveRightWithShape {
+  to {
+    left: 100%;
+  }
+}
