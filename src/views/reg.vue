@@ -508,7 +508,7 @@ body {
 
 .container {
   height: 200vh;
-   background-image:  url("./public/walpaper.jpg");
+   background-image:  url("./public/Polygon Luminary.svg");
     background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
