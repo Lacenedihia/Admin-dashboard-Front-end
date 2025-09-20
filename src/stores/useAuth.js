@@ -4,13 +4,30 @@ import { ref, inject } from 'vue'
 // Create a symbol for the auth context
 export const AuthSymbol = Symbol('Auth')
 
+// Initialize auth from localStorage if available
+const getInitialAuth = () => {
+    try {
+        const stored = localStorage.getItem('auth')
+        return stored ? JSON.parse(stored) : {}
+    } catch (error) {
+        console.error('Error loading auth from localStorage:', error)
+        return {}
+    }
+}
 
 // Global auth store instance
-const auth = ref({})
+const auth = ref(getInitialAuth())
 
 export function createAuthStore() {
     const setAuth = (newAuth) => {
         auth.value = newAuth;
+
+        // Persist to localStorage
+        try {
+            localStorage.setItem('auth', JSON.stringify(newAuth))
+        } catch (error) {
+            console.error('Error saving auth to localStorage:', error)
+        }
 
         console.log("=== AUTH SET ===")
         console.log("Username:", auth.value.user)
@@ -22,7 +39,15 @@ export function createAuthStore() {
 
     const clearAuth = () => {
         auth.value = {};
-        console.log("none logg")
+
+        // Remove from localStorage
+        try {
+            localStorage.removeItem('auth')
+        } catch (error) {
+            console.error('Error removing auth from localStorage:', error)
+        }
+
+        console.log("User logged out")
         console.log(auth.value)
     }
 
@@ -41,7 +66,6 @@ export function createAuthStore() {
 
 // Export the global store instance
 export const globalAuthStore = createAuthStore()
-
 
 export function useAuth() {
     const context = inject(AuthSymbol)

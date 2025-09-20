@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { globalAuthStore } from '@/stores/useAuth.js'
+
 const routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: () => {
+      // Check if user is authenticated
+      const firstRole = globalAuthStore.auth.value?.roles?.[0]
+      return firstRole === 2001 ? '/dashboard' : '/login'
+    },
   },
   {
     path: "/login",
@@ -26,7 +31,7 @@ const routes = [
     name: "dashboard",
     component: () => import("@/views/dashboard.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     }
   },
   {
@@ -34,7 +39,7 @@ const routes = [
     name: "BlogsPage",
     component: () => import("@/views/blog/Blogpage.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: false, // Keep false if blogs should be public
     }
   },
   {
@@ -43,15 +48,15 @@ const routes = [
     component: () => import("@/views/blog/Detailblog.vue"),
     meta: {
       title: "blog",
+      requiresAuth: false, // Keep false if blog details should be public
     },
   },
-
   {
     path: "/adminBlogs",
     name: "adminBlogs",
     component: () => import("@/views/Admin/Blog/AdminBlogs.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true - admin routes should be protected
     },
   },
   {
@@ -59,7 +64,7 @@ const routes = [
     name: "addBlogs",
     component: () => import("@/views/Admin/Blog/AddBlog.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     },
   },
   {
@@ -67,7 +72,7 @@ const routes = [
     name: "updateBlog",
     component: () => import("@/views/Admin/Blog/UpdateBlog.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     },
   },
   {
@@ -75,7 +80,7 @@ const routes = [
     name: "adminCategories",
     component: () => import("@/views/Categories/AdminCategories.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     },
   },
   {
@@ -83,7 +88,7 @@ const routes = [
     name: "updateCategory",
     component: () => import("@/views/Categories/UpdateCategory.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     },
   },
   {
@@ -91,9 +96,10 @@ const routes = [
     name: "addCategory",
     component: () => import("@/views/Categories/AddCategory.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true, // Changed to true
     },
-  }, {
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("@/views/NotFound.vue"),
@@ -110,11 +116,19 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const firstRole = globalAuthStore.auth.value?.roles?.[0]
+  const isAuthenticated = firstRole === 2001
 
-  if (to.meta.requiresAuth && firstRole !== 2001) {
+  // If route requires auth and user is not authenticated
+  if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login')
-  } else {
+  }
+  // If user is authenticated and trying to access login/register
+  else if (isAuthenticated && (to.name === 'LoginComponent' || to.name === 'registerr')) {
+    next('/dashboard')
+  }
+  else {
     next()
   }
 })
+
 export default router
